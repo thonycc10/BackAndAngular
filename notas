@@ -1,0 +1,13 @@
+- OpenSSL (RCA) https://www.openssl.org - Certificados que contiene una llave:
+    *publica: para verificar que el token sea valido y no sea alterado.
+    *privado: Firmar token.
+    para descargar: https://wiki.openssl.org/index.php/Binaries
+    * luego de instalar entrar al PATH y añadir la ruta bin (C:\OpenSSL-Win64\bin)
+    * comandos (cmd): openssl genrsa -out jwt.pem (genera el archivo deben tener el mismo nombre jwt.pem)
+    * comandos (cmd): openssl rsa -in jwt.pem (crea la llave privada)
+    * comandos (cmd): openssl rsa -in jwt.pem -pubout (crea la llave publica)
+- Spring segurity error, añadir estas dependencias
+    https://github.com/Baeldung/spring-security-oauth/issues/118
+- TokenEnhancer:
+    Token potenciador para añadir informacion.
+    * verificar del archivo InfoAddToken.Java
