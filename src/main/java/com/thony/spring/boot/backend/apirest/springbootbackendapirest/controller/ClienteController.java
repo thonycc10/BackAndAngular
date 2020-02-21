@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,6 +50,7 @@ public class ClienteController  {
         return clienteService.findAll(pageable);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/clientes/{id}")
     public ResponseEntity<?> getFindById(@PathVariable Long id){
         Cliente cliente = null;
@@ -67,6 +69,7 @@ public class ClienteController  {
         return  new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/clientes")
     public ResponseEntity<?> save(@Valid @RequestBody Cliente cliente, BindingResult result) {
         Cliente cliente1 = null;
@@ -99,6 +102,7 @@ public class ClienteController  {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping("/clientes/{id}")
     public  ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result,
                            @PathVariable Long id) {
@@ -140,8 +144,9 @@ public class ClienteController  {
 
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/clientes/{id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//  @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {
@@ -160,6 +165,7 @@ public class ClienteController  {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/clientes/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo,
                                     @RequestParam("id") Long id) {
