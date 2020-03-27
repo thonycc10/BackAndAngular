@@ -50,7 +50,7 @@ public class ClienteController  {
         return clienteService.findAll(pageable);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    //@Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/clientes/{id}")
     public ResponseEntity<?> getFindById(@PathVariable Long id){
         Cliente cliente = null;
@@ -144,7 +144,7 @@ public class ClienteController  {
 
     }
 
-    @Secured("ROLE_ADMIN")
+    // @Secured("ROLE_ADMIN")
     @DeleteMapping("/clientes/{id}")
 //  @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> delete(@PathVariable Long id) {
