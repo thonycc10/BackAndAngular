@@ -2,8 +2,10 @@ package com.thony.spring.boot.backend.apirest.springbootbackendapirest.service;
 
 import com.thony.spring.boot.backend.apirest.springbootbackendapirest.dao.ClienteDao;
 import com.thony.spring.boot.backend.apirest.springbootbackendapirest.dao.IFacturaDao;
+import com.thony.spring.boot.backend.apirest.springbootbackendapirest.dao.IProductoDao;
 import com.thony.spring.boot.backend.apirest.springbootbackendapirest.entity.Cliente;
 import com.thony.spring.boot.backend.apirest.springbootbackendapirest.entity.Factura;
+import com.thony.spring.boot.backend.apirest.springbootbackendapirest.entity.Producto;
 import com.thony.spring.boot.backend.apirest.springbootbackendapirest.entity.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     private IFacturaDao facturaDao;
+
+    @Autowired
+    private IProductoDao productoDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -71,8 +76,14 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void deleteFactura(Long id) {
         facturaDao.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findProductoByNombre(String term) {
+        return productoDao.findByNombreContainingIgnoreCase(term);
     }
 }
