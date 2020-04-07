@@ -70,7 +70,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public Factura saveFactura(Factura factura) {
         return facturaDao.save(factura);
     }

@@ -22,7 +22,7 @@ public class Factura implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @JsonIgnoreProperties({"facturas","hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties(value = {"facturas","hibernateLazyInitializer", "handler"}, allowSetters = true)
     @ManyToOne(fetch = FetchType.LAZY) // ojo la sociacion es asi muchas facturas estan asociadas a un cliente
     //@JoinColumn(name = "cliente_id") // nombre de la llave forania
     private Cliente cliente;
